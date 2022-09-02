@@ -61,7 +61,6 @@ def v3(factorial_number, alternatives, profile, stride, total):
         factorial_number[idx, i] = alt-1
 
       ############### GET THE DISTANCE TO THE PROFILE ############################
-
       dist = 0
       for i in range(n): # for each row
         for j in range(i+1, n): # for each col, consider only elements over diagonal
@@ -79,4 +78,4 @@ def v3(factorial_number, alternatives, profile, stride, total):
       ranking_id += stride
 
     # update the info in the
-    factorial_number[idx, 0] = local_best_dist
+    # factorial_number[idx, 0] = local_best_dist

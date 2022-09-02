@@ -72,9 +72,10 @@ def v2d(factorial_number, alternatives, profile, stride, total, best_dist, best_
           else: # factorial_number[i] < factorial_number[j] and also if the are the same 
             dist += profile[j,i]
 
-            if dist > local_best_dist:
-                break
-        break
+          if dist > local_best_dist:
+            break
+        if dist > local_best_dist:
+          break
 
       ############### UPDATE BEST DISTANCE #######################################
 
