@@ -79,8 +79,9 @@ def v2(factorial_number, alternatives, profile, stride, total, best_dist, best_r
       # increment the stride to evaluate the next ranking
       ranking_id += stride
 
-    #if dist < best_dist: # this must be done with atomic access
-    # best_dist = dist
+    # if local_best_dist < best_dist: 
+    #   best_dist = local_best_dist (this must be done with atomic access)
     value = cuda.atomic.min(best_dist, 0, local_best_dist)
-    if value > dist:
+    # value contains the value of the min
+    if value == dist:
       cuda.atomic.add(best_ranking, 0, ranking_id)

@@ -1,5 +1,5 @@
 @cuda.jit
-def distance_from_ranking_to_profile_gpu(factorial_number, alternatives, profile, stride, total, best_dist, best_ranking):
+def v1(factorial_number, alternatives, profile, stride, total, best_dist, best_ranking):
   
   ############### GET THE FACTORIAL NUMBER FROM IDX ############################
 
