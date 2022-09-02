@@ -12,7 +12,8 @@ def v2(factorial_number, alternatives, profile, stride, total, best_dist, best_r
   # to the stride
   idx = cuda.grid(1)
 
-  local_best_dist = 1000
+  local_best_dist = np.inf
+  best_id = total+1
 
   if idx < stride: # otherwise accessing positions that cannot be written
     ranking_id = idx
@@ -75,6 +76,7 @@ def v2(factorial_number, alternatives, profile, stride, total, best_dist, best_r
 
       if dist < local_best_dist:
         local_best_dist = dist
+        best_id = ranking_id
 
       # increment the stride to evaluate the next ranking
       ranking_id += stride
@@ -83,5 +85,5 @@ def v2(factorial_number, alternatives, profile, stride, total, best_dist, best_r
     #   best_dist = local_best_dist (this must be done with atomic access)
     value = cuda.atomic.min(best_dist, 0, local_best_dist)
     # value contains the value of the min
-    if value == dist:
-      cuda.atomic.add(best_ranking, 0, ranking_id)
+    if value > local_best_dist:
+      best_ranking[0] = idx
