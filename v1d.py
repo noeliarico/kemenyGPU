@@ -1,5 +1,5 @@
 @cuda.jit
-def v1(factorial_number, alternatives, profile, stride, total, best_dist, best_ranking):
+def v1d(factorial_number, alternatives, profile, stride, total, best_dist, best_ranking):
   
   ############### GET THE FACTORIAL NUMBER FROM IDX ############################
 
@@ -67,6 +67,9 @@ def v1(factorial_number, alternatives, profile, stride, total, best_dist, best_r
             dist += profile[i,j]
           else: # factorial_number[i] < factorial_number[j] and also if the are the same 
             dist += profile[j,i]
+
+        if dist < best_dist[0]:
+            break
 
       ############### UPDATE BEST DISTANCE #######################################
 

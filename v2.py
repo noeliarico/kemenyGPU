@@ -86,4 +86,4 @@ def v2(factorial_number, alternatives, profile, stride, total, best_dist, best_r
     value = cuda.atomic.min(best_dist, 0, local_best_dist)
     # value contains the value of the min
     if value > local_best_dist:
-      best_ranking[0] = idx
+      best_ranking[0] = ranking_id
